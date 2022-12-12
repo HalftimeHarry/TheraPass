@@ -1,9 +1,12 @@
 tasks:
   - init: |
       python -m venv venv
+      !pip install tensorflow-gpu==2.3.1
+      !pip install sentencepiece
+      !pip install tensorflow-hub
+      !pip install bert-tensorflow
       source venv/bin/activate
       pip install --upgrade pip wheel setuptools
-      pip install Django
       python manage.py migrate
   - command: |
       source venv/bin/activate
@@ -11,7 +14,7 @@ tasks:
   
 ports:
   - port: 8000
-    visibility: private
+    visibility: public
     onOpen: open-preview
 
 vscode:
